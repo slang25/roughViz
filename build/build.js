@@ -19,6 +19,7 @@ const globals = { d3: "d3", roughjs: "rough" };
 // Rollup configuration for the passed in module system
 const moduleConfig = (moduleSystem, minimized) => ({
   input: `src/index.js`,
+  ...(["iffe", "umd"].includes(moduleSystem) ? { output: { name: "roughviz" } } : {}),
   external,
   plugins: [
     commonjs(),
