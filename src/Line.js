@@ -11,7 +11,7 @@ import {
   format,
   scaleLinear,
   scalePoint,
-  mouse,
+  pointer,
   select,
   selectAll,
   line,
@@ -327,9 +327,9 @@ export class Line extends Chart {
         .attr("alignment-baseline", "middle");
     });
 
-    const mousemove = function (d) {
+    const mousemove = function (event, d) {
       // recover coordinate we need
-      const xPos = mouse(this)[0];
+      const xPos = pointer(event)[0];
       const domain = that.xScale.domain();
       const xRange = that.xScale.range();
       const rangePoints = range(xRange[0], xRange[1] + 1, that.xScale.step());

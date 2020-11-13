@@ -7,7 +7,7 @@ import {
   format,
   scaleBand,
   scaleLinear,
-  mouse,
+  pointer,
   select,
   selectAll,
 } from "d3";
@@ -273,26 +273,26 @@ export class BarH extends Chart {
       .style("pointer-events", "none");
 
     // event functions
-    var mouseover = function (d) {
+    var mouseover = function (event, d) {
       Tooltip.style("opacity", 1);
     };
     const that = this;
 
-    var mousemove = function (d) {
+    var mousemove = function (event, d) {
       const attrX = select(this).attr("attrX");
       const attrY = select(this).attr("attrY");
-      const mousePos = mouse(this);
+      const mousePos = pointer(event);
       // get size of enclosing div
       Tooltip.html(`<b>${attrX}</b>: ${attrY}`)
         .style("opacity", 0.95)
         .attr("class", function (d) {})
         .style(
           "transform",
-          `translate(${mousePos[0] + that.margin.left}px, 
+          `translate(${mousePos[0] + that.margin.left}px,
               ${mousePos[1] - (that.height + that.margin.top + that.margin.bottom)}px)`
         );
     };
-    var mouseleave = function (d) {
+    var mouseleave = function (event, d) {
       Tooltip.style("opacity", 0);
     };
 

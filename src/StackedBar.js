@@ -1,6 +1,6 @@
 import {
   max,
-  mouse,
+  pointer,
   select,
   selectAll,
   axisBottom,
@@ -301,28 +301,28 @@ export class StackedBar extends Chart {
       .style("pointer-events", "none");
 
     // event functions
-    const mouseover = function (d) {
+    const mouseover = function (event, d) {
       Tooltip.style("opacity", 1);
     };
     const that = this;
     let thisColor;
 
-    const mousemove = function (d) {
+    const mousemove = function (event, d) {
       const attrX = select(this).attr("attrX");
       const attrY = select(this).attr("attrY");
       const keyY = select(this).attr("keyY");
-      const mousePos = mouse(this);
+      const mousePos = pointer(event);
       // get size of enclosing div
       Tooltip.html(`<h4>${attrX}</h4> <b>${keyY}</b>: ${attrY}`)
         .style("opacity", 0.95)
         .attr("class", function (d) {})
         .style(
           "transform",
-          `translate(${mousePos[0] + that.margin.left}px, 
+          `translate(${mousePos[0] + that.margin.left}px,
           ${mousePos[1] - (that.height + that.margin.top + that.margin.bottom)}px)`
         );
     };
-    const mouseleave = function (d) {
+    const mouseleave = function (event, d) {
       Tooltip.style("opacity", 0);
     };
 
