@@ -1,4 +1,4 @@
-const familyLoader = (family) =>
+const familyLoader = ([family]) =>
   `https://fonts.googleapis.com/css2?family=${family.replace(/ /g, "+")}&display=swap`;
 
 export let preloadedFonts = [];
